@@ -149,7 +149,7 @@ function fit_dir_cat_over_time_debug()
         FIT_opts.shuff              = 20;  
         FIT_opts.pid_constrained    = true;
         FIT_opts.supressWarnings    = false;
-        FIT_opts.computeNulldist    = false;
+        FIT_opts.computeNulldist    = true;
         FIT_opts.parallel_sampling  = true;
 
         if FIT_opts.tpres{1} <= FIT_opts.tau{1}
