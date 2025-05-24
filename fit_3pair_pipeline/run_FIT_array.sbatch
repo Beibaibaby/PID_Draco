@@ -33,4 +33,5 @@ matlab -nodisplay -r "\
   addpath(genpath('/project/bdoiron/draco/MINT')); \
   addpath(genpath(pwd)); \
   run_fit_combo('$SRC','$DST','$LABEL'); \
+  matlab -nodisplay -r "run_postPlots";\
   quit"

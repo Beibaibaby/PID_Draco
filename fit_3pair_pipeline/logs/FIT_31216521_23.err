@@ -1,0 +1,6 @@
+{Error using assert
+Assertion failed.
+
+Error in run_fit_combo (line 15)
+assert(isfield(AREA,srcArea) && isfield(AREA,dstArea));
+} 

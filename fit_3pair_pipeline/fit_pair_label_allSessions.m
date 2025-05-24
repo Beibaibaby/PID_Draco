@@ -1,10 +1,9 @@
-function fit_pair_label_allSessions(data_master, srcField, dstField, labelType, rootDir)
-% Generic FIT runner with PARFOR over windows
-% (Only one copy will run per SLURM task)
+function fit_pair_label_allSessions(data_master, srcField, dstField, ...
+                                    labelType, rootDir, tauVal)
 
 pairTag = sprintf('%s_%s_%s',srcField,dstField,labelType);
-matDir  = fullfile(rootDir,pairTag,'session_mat');  if ~exist(matDir,'dir'); mkdir(matDir); end
-figDir  = fullfile(rootDir,pairTag,'session_fig');  if ~exist(figDir,'dir'); mkdir(figDir); end
+matDir  = fullfile(rootDir,pairTag,'session_mat');  if ~exist(matDir,'dir'), mkdir(matDir); end
+figDir  = fullfile(rootDir,pairTag,'session_fig');  if ~exist(figDir,'dir'), mkdir(figDir); end
 
 % ----- analysis parameters (unchanged from your script) -----------------
 alignEvt     = 'Align_to_cat_stim_on';
@@ -17,9 +16,13 @@ nW           = numel(centres);
 subBin       = 0.005;
 minTrials    = 30;
 
-optsFIT = struct('tauVal',2,'redundancy_measure','I_min', ...
-                 'bin_method',{{'eqpop','eqpop','none'}},'n_bins',{{3,3}}, ...
-                 'bias','plugin','supressWarnings',true, 'pid_constrained',true);
+optsFIT = struct('tauVal',tauVal, ...        % <<<<<<<<<<<<<<<<<<<<<<
+                 'redundancy_measure','I_min', ...
+                 'bin_method',{{'eqpop','eqpop','none'}}, ...
+                 'n_bins',{{3,3}}, ...
+                 'bias','plugin','supressWarnings',true, ...
+                 'pid_constrained',true);
+
 
 % ----- sessions ----------------------------------------------------------
 sessIDs = [data_master.Bhv.session_id]';
@@ -54,7 +57,7 @@ for s = 1:nSess
         XA=sum(XA(:,1:bins,:),3); YB=sum(YB(:,1:bins,:),3);
 
         X1=reshape(XA,[1,bins,nTr]);  Y1=reshape(YB,[1,bins,nTr]);
-        opts = optsFIT; opts.tpres={bins}; opts.tau={min(2,bins-1)};
+        opts = optsFIT; opts.tpres={bins}; opts.tau={min(tauVal,bins-1)}; 
 
         if strcmp(labelType,'direction')
             lab=reshape(dirLab,[1,1,nTr]);

@@ -1,0 +1,15 @@
+[Sat May 24 02:50:36 CDT 2025] Task 25 → ->, , τ=5
+
+                            < M A T L A B (R) >
+                  Copyright 1984-2023 The MathWorks, Inc.
+             R2023a Update 3 (9.14.0.2286388) 64-bit (glnxa64)
+                                May 25, 2023
+
+[Warning: Unable to load Toolbox Path Cache
+/home/dracoxu/.matlab/R2023a/toolbox_cache-9.14.0-1706140755-glnxa64.xml. The
+cache file is not in the correct format. It will be regenerated upon quitting
+MATLAB.] 
+ 
+To get started, type doc.
+For product information, visit www.mathworks.com.
+ 
